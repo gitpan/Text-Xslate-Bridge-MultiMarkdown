@@ -1,6 +1,6 @@
 package Text::Xslate::Bridge::MultiMarkdown;
 {
-  $Text::Xslate::Bridge::MultiMarkdown::VERSION = '0.001';
+  $Text::Xslate::Bridge::MultiMarkdown::VERSION = '0.002';
 }
 use strict;
 use warnings;
@@ -11,8 +11,8 @@ use Text::MultiMarkdown;
 # ABSTRACT: MultiMarkdown 'filter' for Text::Xslate
 
 sub markdown {
-    my ( $text ) = @_;
-    my $m = Text::MultiMarkdown->new;
+    my ( $text, %markdown_options ) = @_;
+    my $m = Text::MultiMarkdown->new( %markdown_options );
     return $m->markdown($text);
 }
 
@@ -32,7 +32,7 @@ Text::Xslate::Bridge::MultiMarkdown - MultiMarkdown 'filter' for Text::Xslate
 
 =head1 VERSION
 
-version 0.001
+version 0.002
 
 =head1 SYNOPSIS
 
@@ -43,6 +43,8 @@ version 0.001
     );
 
     print $xslate->render_string('<: markdown( "# H1 Heading" ) :>');
+
+    print $xslate->render_string('<: markdown( "# H1 Heading", heading_ids => 0 ) :>');
 
 =head1 AUTHOR
 
